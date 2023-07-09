@@ -1,0 +1,16 @@
+version: "3"
+services:
+
+  app_project_nginx:
+    build:
+      context: .
+      dockerfile: DockerfileNginx.DOCKERFILE
+    container_name: app_cs_nginx
+    restart: always
+    ports:
+      - 99:80
+    volumes:
+      - ./www:/var/www # Répertoire de volume pour Nginx
+      - ./config/nginx/:/etc/nginx/conf.d/
+    depends_on:
+      - app_project_cs
